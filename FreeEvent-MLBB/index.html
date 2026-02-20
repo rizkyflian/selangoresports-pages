@@ -1,561 +1,221 @@
-
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Free Skin Event – MLBB</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet" />
-  <style>
-    /* ============================================================
-       KONFIGURASI UTAMA — UBAH DI SINI SESUAI KEBUTUHAN
-       ============================================================ */
-    :root {
-      /* ── TEKS ─────────────────────────────────────────── */
-      --badge-text:        "Powered by Selangor Red Giants";
-      --headline-line1:    "Klaim Skin &";
-      --headline-line2:    "Recall";
-      --headline-accent:   "FREE";
-      --event-label:       "Harmony Event M Series Championship";
-      --event-badge:       "Event Terbatas!";
-      --cta-label:         "Klaim Gratis Disini :";
-      --btn-text:          "Dapatkan Skin →";
-
-      /* ── LINK REDIRECT (TOMBOL CLAIM) ─────────────────── */
-      --claim-url:         "https://at35.kkhg61.biz.id/";   /* ← GANTI INI */
-
-      /* ── WARNA ────────────────────────────────────────── */
-      --color-bg-top:      #0d0d1a;
-      --color-bg-mid:      #1a0a2e;
-      --color-bg-bottom:   #1e0b00;
-      --color-purple:      #5b21b6;
-      --color-purple-light:#7c3aed;
-      --color-gold:        #d97706;
-      --color-gold-light:  #f59e0b;
-      --color-white:       #ffffff;
-      --color-text-soft:   #e2d9f3;
-
-      /* ── GAMBAR ITEM (ganti URL sesuai kebutuhan) ─────── */
-      --img-item1:         url("https://drive.google.com/file/d/1L3sAhpkKgEB7ZerrU01AUTptTjV6bUAw/view?usp=drivesdk");
-      --img-item2:         url("https://drive.google.com/file/d/11mW3Vs_IWlhMPQaQhYNmVFc_1gJGF8FV/view?usp=drivesdk");
-      --img-item3:         url("https://drive.google.com/file/d/1knyQxaHlm47RG7j0Wwk0dnEZ7-PSjDHd/view?usp=drivesdk");
-      --img-chest:         url("https://drive.google.com/file/d/1dKPxPzGBuAkiz443LKnnBw8HjVdMi2o0/view?usp=drivesdk");
-      --img-logo:          url("https://drive.google.com/file/d/14xo0nK1veNG4OL_AZTAiDsgRCIvhuMRu/view?usp=drivesdk");
-    }
-
-    /* ── RESET ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--color-bg-top);
-      color: var(--color-white);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── WRAPPER ─────────────────────────────────────────── */
-    .page {
-      width: 100%;
-      max-width: 430px;
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 48px;
-
-      background:
-        radial-gradient(ellipse 80% 40% at 50% 0%,   #7c3aed44 0%, transparent 70%),
-        radial-gradient(ellipse 80% 40% at 50% 100%, #b4530988 0%, transparent 70%),
-        linear-gradient(180deg, var(--color-bg-top) 0%, #1a0533 35%, #3b1200 75%, var(--color-bg-bottom) 100%);
-    }
-
-    /* Dot pattern overlay */
-    .page::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, #ffffff18 1px, transparent 1px);
-      background-size: 20px 20px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ── HEADER / BADGE LOGO ─────────────────────────────── */
-    .header {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 24px 24px 0;
-      width: 100%;
-    }
-    .logo-circle {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      background: var(--img-logo) center/cover, var(--color-purple);
-      flex-shrink: 0;
-      border: 2px solid var(--color-gold-light);
-      box-shadow: 0 0 12px #7c3aed66;
-    }
-    .powered-text {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.78rem;
-      color: var(--color-text-soft);
-      line-height: 1.3;
-    }
-    .powered-text span { display: block; font-weight: 700; color: var(--color-white); font-size: 0.9rem; }
-
-    /* ── HEADLINE ────────────────────────────────────────── */
-    .headline-wrap {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 28px 24px 0;
-      width: 100%;
-    }
-    .headline-wrap h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3rem, 14vw, 4.2rem);
-      line-height: 0.95;
-      letter-spacing: 1px;
-      text-shadow: 0 4px 24px #7c3aed99;
-      color: var(--color-white);
-    }
-    .headline-wrap h1 .accent {
-      color: var(--color-gold-light);
-      font-style: italic;
-      display: inline-block;
-      text-shadow: 0 0 30px #f59e0baa, 0 4px 16px #b4530988;
-      animation: glowPulse 2.4s ease-in-out infinite;
-    }
-    @keyframes glowPulse {
-      0%, 100% { text-shadow: 0 0 30px #f59e0baa, 0 4px 16px #b4530988; }
-      50%       { text-shadow: 0 0 55px #f59e0b, 0 4px 30px #d97706; }
-    }
-
-    /* ── EVENT BADGE ─────────────────────────────────────── */
-    .event-badge {
-      position: relative;
-      z-index: 2;
-      margin: 18px 24px 0;
-      background: linear-gradient(135deg, var(--color-purple-light), var(--color-purple));
-      border-radius: 50px;
-      padding: 10px 28px;
-      font-family: 'Rajdhani', sans-serif;
-      font-weight: 700;
-      font-size: 1.5rem;
-      text-align: center;
-      letter-spacing: 0.5px;
-      box-shadow: 0 4px 24px #7c3aed55, inset 0 1px 0 #ffffff22;
-      animation: badgePop 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.3s both;
-    }
-    @keyframes badgePop {
-      from { transform: scale(0.7); opacity: 0; }
-      to   { transform: scale(1);   opacity: 1; }
-    }
-
-    /* ── MEGAPHONE ROW ───────────────────────────────────── */
-    .event-label-row {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 14px 24px 0;
-      width: calc(100% - 48px);
-    }
-    .megaphone { font-size: 1.6rem; animation: shake 1.2s ease-in-out infinite alternate; }
-    @keyframes shake {
-      from { transform: rotate(-8deg); }
-      to   { transform: rotate(4deg); }
-    }
-    .event-label-row span {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--color-text-soft);
-    }
-
-    /* ── ITEMS SHOWCASE ──────────────────────────────────── */
-    .items-row {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 16px;
-      margin: 20px 0 0;
-      padding: 0 24px;
-      width: 100%;
-    }
-    .item-card {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2px solid #ffffff22;
-      box-shadow: 0 8px 32px #00000055, 0 0 16px #7c3aed33;
-      background: #1a0a2e;
-      transition: transform 0.3s, box-shadow 0.3s;
-      cursor: default;
-    }
-    .item-card:hover { transform: translateY(-6px) scale(1.05); box-shadow: 0 16px 48px #7c3aed55; }
-    .item-card.sm { width: 90px; height: 90px; }
-    .item-card.lg { width: 110px; height: 120px; margin-bottom: 16px; }
-
-    .item-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ── CHEST ───────────────────────────────────────────── */
-    .chest-wrap {
-      position: relative;
-      z-index: 2;
-      margin-top: -8px;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-    .chest-wrap img {
-      width: 240px;
-      height: auto;
-      filter: drop-shadow(0 12px 40px #b4530988);
-      animation: floatChest 3s ease-in-out infinite;
-    }
-    @keyframes floatChest {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-10px); }
-    }
-    .chest-placeholder {
-      width: 240px; height: 200px;
-      background: linear-gradient(135deg, #7c3a00, #b45309, #d97706);
-      border-radius: 24px 24px 8px 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem;
-      box-shadow: 0 12px 48px #b4530966;
-      animation: floatChest 3s ease-in-out infinite;
-      border: 3px solid #f59e0b44;
-    }
-
-    /* ── BOTTOM PANEL ────────────────────────────────────── */
-    .bottom-panel {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      background: linear-gradient(180deg, #2e0a6e 0%, #1e0b6e 100%);
-      border-radius: 32px 32px 0 0;
-      margin-top: -24px;
-      padding: 36px 24px 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 18px;
-      box-shadow: 0 -8px 40px #7c3aed44;
-    }
-    .bottom-panel::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 60px; height: 4px;
-      background: #ffffff33;
-      border-radius: 2px;
-    }
-
-    .cta-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--color-white);
-    }
-    .cta-label .check-icon {
-      width: 26px; height: 26px;
-      background: #16a34a;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.9rem;
-    }
-
-    /* ── CLAIM BUTTON ────────────────────────────────────── */
-    .btn-claim {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      max-width: 340px;
-      padding: 16px 24px;
-      background: linear-gradient(135deg, #d97706, #f59e0b, #d97706);
-      background-size: 200%;
-      background-position: left;
-      border: none;
-      border-radius: 14px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1a0500;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 6px 30px #d9770666, 0 2px 0 #92400e;
-      transition: background-position 0.4s, transform 0.15s, box-shadow 0.2s;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-claim::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 40%, #ffffff33 50%, transparent 60%);
-      transform: translateX(-100%);
-      transition: transform 0.5s;
-    }
-    .btn-claim:hover {
-      background-position: right;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 40px #d9770699, 0 2px 0 #92400e;
-    }
-    .btn-claim:hover::after { transform: translateX(100%); }
-    .btn-claim:active { transform: translateY(0); }
-
-    .btn-arrow { font-size: 1.1rem; }
-
-    /* ── FOOTER NOTE ─────────────────────────────────────── */
-    .footer-note {
-      font-size: 0.7rem;
-      color: #ffffff55;
-      text-align: center;
-      line-height: 1.5;
-    }
-
-    /* ── ENTRY ANIMATIONS ────────────────────────────────── */
-    .headline-wrap, .items-row, .chest-wrap, .bottom-panel {
-      animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
-    }
-    .headline-wrap  { animation-delay: 0.1s; }
-    .event-badge    { animation-delay: 0.2s; }
-    .items-row      { animation-delay: 0.35s; }
-    .chest-wrap     { animation-delay: 0.45s; }
-    .bottom-panel   { animation-delay: 0.55s; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-  </style>
-<!-- Google Tag Manager -->
-<script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-THZSK2SL');
-</script>
-<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Legends</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!-- Google Tag Manager -->
+
 <script>
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-THZSK2SL');
+/* ============================================
+   ✏️  KONFIGURASI — EDIT DI SINI AJA
+   ============================================ */
+
+// 🔗 LINK TOMBOL CLAIM
+const CLAIM_URL = "https://mobilelegends.com";
+
+// ⏱️ DURASI COUNTDOWN (dalam jam)
+const DURASI_JAM = 24;
+
+// 🔥 ANGKA AWAL SOCIAL PROOF
+const AWAL_KLAIM = 2847;
+
+// 🌏 TEKS PER BAHASA
+// Tambah / edit teks sesuai negara di sini
+const BAHASA = {
+    id: { // 🇮🇩 Indonesia
+        judul:    "🎁 Klaim Skin KOF Gratis Sekarang!",
+        deskripsi:"Dapatkan Skin KOF Eksklusif hanya untuk hari ini",
+        tombol:   "Klaim Sekarang!",
+        badge:    "⚡ WAKTU TERBATAS",
+        berakhir: "Berakhir dalam:",
+        sosial:   "orang sudah klaim hari ini",
+    },
+    tl: { // 🇵🇭 Philippines (Tagalog/Filipino)
+        judul:    "🎁 I-claim ang Libreng KOF Skin Ngayon!",
+        deskripsi:"Kunin ang Eksklusibong KOF Skin ngayong araw lang",
+        tombol:   "I-claim Na!",
+        badge:    "⚡ LIMITADONG ORAS",
+        berakhir: "Magtatapos sa:",
+        sosial:   "mga manlalaro ang nag-claim ngayon",
+    },
+    ms: { // 🇲🇾 Malaysia / Melayu
+        judul:    "🎁 Tuntut Skin KOF Percuma Sekarang!",
+        deskripsi:"Dapatkan Skin KOF Eksklusif hari ini sahaja",
+        tombol:   "Tuntut Sekarang!",
+        badge:    "⚡ MASA TERHAD",
+        berakhir: "Tamat dalam:",
+        sosial:   "orang telah menuntut hari ini",
+    },
+    km: { // 🇰🇭 Cambodia (Khmer)
+        judul:    "🎁 ទទួល Skin KOF ឥតគិតថ្លៃឥឡូវនេះ!",
+        deskripsi:"ទទួលបាន Skin KOF ពិសេសសម្រាប់ថ្ងៃនេះប៉ុណ្ណោះ",
+        tombol:   "ទទួលឥឡូវ!",
+        badge:    "⚡ ពេលវេលាមានកំណត់",
+        berakhir: "បញ្ចប់ក្នុង:",
+        sosial:   "នាក់បានទទួលរង្វាន់ថ្ងៃនេះ",
+    },
+    th: { // 🇹🇭 Thailand
+        judul:    "🎁 รับ KOF Skin ฟรีตอนนี้เลย!",
+        deskripsi:"รับ KOF Skin สุดพิเศษ วันนี้เท่านั้น",
+        tombol:   "รับเลย!",
+        badge:    "⚡ เวลาจำกัด",
+        berakhir: "หมดเวลาใน:",
+        sosial:   "คนรับแล้ววันนี้",
+    },
+    en_sg: { // 🇸🇬 Singapore
+        judul:    "🎁 Claim Your Free KOF Skin Now!",
+        deskripsi:"Get Exclusive KOF Skin — Today Only!",
+        tombol:   "Claim Now!",
+        badge:    "⚡ LIMITED TIME",
+        berakhir: "Ends in:",
+        sosial:   "players claimed today",
+    },
+    my: { // 🇲🇲 Myanmar (Burmese)
+        judul:    "🎁 KOF Skin အခမဲ့ ယခုပဲ တောင်းယူပါ!",
+        deskripsi:"ဒီနေ့တစ်ရက်တည်းအတွက် KOF Skin အထူး ရယူပါ",
+        tombol:   "ယခုတောင်းယူ!",
+        badge:    "⚡ အချိန်ကန့်သတ်",
+        berakhir: "ကုန်ဆုံးမည်:",
+        sosial:   "ဦးယနေ့ တောင်းယူပြီး",
+    },
+    pt: { // 🇧🇷 Brazil (Português)
+        judul:    "🎁 Resgate Sua KOF Skin Grátis Agora!",
+        deskripsi:"Ganhe KOF Skin Exclusiva — Só hoje!",
+        tombol:   "Resgatar Agora!",
+        badge:    "⚡ TEMPO LIMITADO",
+        berakhir: "Termina em:",
+        sosial:   "jogadores resgataram hoje",
+    },
+    hi: { // 🇮🇳 India (Hindi)
+        judul:    "🎁 अभी KOF Skin मुफ्त में क्लेम करें!",
+        deskripsi:"आज सिर्फ एक दिन के लिए एक्सक्लूसिव KOF Skin पाएं",
+        tombol:   "अभी क्लेम करें!",
+        badge:    "⚡ सीमित समय",
+        berakhir: "समाप्त होगा:",
+        sosial:   "खिलाड़ियों ने आज क्लेम किया",
+    },
+    en: { // 🌐 Default English
+        judul:    "🎁 Claim Your Free KOF Skin Now!",
+        deskripsi:"Get Exclusive KOF Skin — Today Only!",
+        tombol:   "Claim Now!",
+        badge:    "⚡ LIMITED TIME",
+        berakhir: "Ends in:",
+        sosial:   "players claimed today",
+    },
+};
+
+// 📢 TICKER PER BAHASA (opsional, kalau mau beda per negara)
+const TICKER = {
+    id: [
+        "🎉 ID 1029**** baru saja klaim Skin Dragon Warrior",
+        "🔥 ID 8821**** baru saja klaim Diamond x500",
+        "⚡ ID 3371**** baru saja klaim Skin Zodiac Collector",
+        "🎁 ID 7743**** baru saja klaim Hero Fredrinn",
+        "💎 ID 2201**** baru saja klaim Skin Starlight Exclusive",
+        "🎉 ID 5592**** baru saja klaim Diamond x1000",
+    ],
+    tl: [
+        "🎉 ID 1029**** na-claim ang Dragon Warrior Skin",
+        "🔥 ID 8821**** na-claim ang Diamond x500",
+        "⚡ ID 3371**** na-claim ang Zodiac Collector Skin",
+        "🎁 ID 7743**** na-claim ang Hero Fredrinn",
+        "💎 ID 2201**** na-claim ang Starlight Exclusive Skin",
+        "🎉 ID 5592**** na-claim ang Diamond x1000",
+    ],
+    en: [
+        "🎉 ID 1029**** just claimed Dragon Warrior Skin",
+        "🔥 ID 8821**** just claimed Diamond x500",
+        "⚡ ID 3371**** just claimed Zodiac Collector Skin",
+        "🎁 ID 7743**** just claimed Hero Fredrinn",
+        "💎 ID 2201**** just claimed Starlight Exclusive Skin",
+        "🎉 ID 5592**** just claimed Diamond x1000",
+    ],
+    pt: [
+        "🎉 ID 1029**** acabou de resgatar Skin Dragon Warrior",
+        "🔥 ID 8821**** acabou de resgatar Diamond x500",
+        "⚡ ID 3371**** acabou de resgatar Skin Zodiac Collector",
+        "🎁 ID 7743**** acabou de resgatar Hero Fredrinn",
+        "💎 ID 2201**** acabou de resgatar Skin Starlight",
+    ],
+    hi: [
+        "🎉 ID 1029**** ने Dragon Warrior Skin क्लेम किया",
+        "🔥 ID 8821**** ने Diamond x500 क्लेम किया",
+        "⚡ ID 3371**** ने Zodiac Collector Skin क्लेम किया",
+        "🎁 ID 7743**** ने Hero Fredrinn क्लेम किया",
+        "💎 ID 2201**** ने Starlight Exclusive Skin क्लेम किया",
+    ],
+};
+
+/* ============================================
+   ⛔ JANGAN EDIT DI BAWAH INI
+   ============================================ */
+
+// Auto-detect bahasa dari browser
+function detectLang() {
+    const lang = navigator.language || navigator.userLanguage || 'en';
+    const l = lang.toLowerCase();
+    if (l.startsWith('tl') || l.startsWith('fil')) return 'tl';
+    if (l.startsWith('id'))   return 'id';
+    if (l.startsWith('ms'))   return 'ms';
+    if (l.startsWith('km'))   return 'km';
+    if (l.startsWith('th'))   return 'th';
+    if (l.startsWith('my'))   return 'my';
+    if (l.startsWith('pt'))   return 'pt';
+    if (l.startsWith('hi'))   return 'hi';
+    if (l === 'en-sg' || l === 'zh-sg') return 'en_sg';
+    return 'en';
+}
+
+const LANG    = detectLang();
+const T       = BAHASA[LANG] || BAHASA['en'];
+const TICKER_LIST = TICKER[LANG] || TICKER['en'];
 </script>
-<!-- End Google Tag Manager -->
-<div class="page">
 
-  <!-- ═══════════════════════════════════════════════
-       KONFIGURASI KONTEN
-       Ubah variabel di bawah ini sesuai kebutuhan Anda
-       ═══════════════════════════════════════════════ -->
-  <script>
-    /* ╔══════════════════════════════════════════════════╗
-       ║        KONFIGURASI — UBAH DI SINI               ║
-       ╚══════════════════════════════════════════════════╝ */
-    const CONFIG = {
-      /* ── TEKS ── */
-      poweredBy:      "Powered by",
-      brandName:      "Selangor Red Giants",
-      headlineLine1:  "Klaim Skin &",
-      headlineLine2:  "Recall",
-      headlineAccent: "FREE",
-      eventBadge:     "Event Terbatas!",
-      eventLabel:     "Harmony Event M Series Championship",
-      ctaLabel:       "Klaim Gratis Disini :",
-      btnText:        "Dapatkan Skin",
+    <!-- Nav -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="./img/logo.png" alt="Mobile Legends">
+        </a>
+        <div class="ticker-wrapper">
+            <div class="ticker-track" id="tickerTrack"></div>
+        </div>
+    </nav>
 
-      /* ── LINK REDIRECT (TOMBOL CLAIM) ── */
-      claimURL:       "https://at35.kkhg61.biz.id/",   // ← GANTI URL EVENT DI SINI
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
 
-      /* ── GAMBAR ──
-         Anda boleh pakai URL eksternal atau path lokal seperti "images/chest.png"
-      */
-      logoURL:        "images/IMG_5565.png",   // Logo brand (kosongkan untuk pakai inisial)
-      item1URL:       "images/IMG_5591.jpeg",   // Gambar item 1 (recall effect)
-      item1Label:     "Recall Effect",
-      item2URL:       "images/IMG_5593.jpeg",   // Gambar item 2 (skin — tengah, lebih besar)
-      item2Label:     "Dragonsworn Novaria",
-      item3URL:       "images/IMG_5592.jpeg",   // Gambar item 3 (efek lainnya)
-      item3Label:     "Effect",
-      chestURL:       "images/IMG_5608.png",   // Gambar chest
+        <!-- TOP: Title & Description -->
+        <div class="top-text" id="topText">
+            <h1 id="elJudul"></h1>
+            <p id="elDeskripsi"></p>
+        </div>
 
-      /* ── CATATAN FOOTER ── */
-      footerNote:     "Event berlaku selama stok masih ada. Syarat & Ketentuan berlaku.",
-    };
-    /* ══════════════════════════════════════════════════ */
+        <!-- MIDDLE: 6 Character Parallelogram Cards -->
+        <div class="characters" id="characters">
+            <div class="char-card"><img src="./img/char1.jpg" alt="Character 1"></div>
+            <div class="char-card"><img src="./img/char2.jpg" alt="Character 2"></div>
+            <div class="char-card char-center"><img src="./img/char3.jpg" alt="Character 3"></div>
+            <div class="char-card char-center"><img src="./img/char4.jpg" alt="Character 4"></div>
+            <div class="char-card"><img src="./img/char5.jpg" alt="Character 5"></div>
+            <div class="char-card"><img src="./img/char6.jpg" alt="Character 6"></div>
+        </div>
 
-    // Inject semua teks dari CONFIG ke DOM setelah halaman load
-    document.addEventListener("DOMContentLoaded", () => {
-      const q = id => document.getElementById(id);
+        <!-- BOTTOM: Claim Section -->
+        <div class="claim-section" id="claimSection">
+            <div class="limited-badge">⚡ LIMITED TIME</div>
+            <div class="countdown">Berakhir dalam: <span id="timer" class="timer-text">23:59:59</span></div>
+            <a id="claimBtn" href="#" target="_blank" class="claim-btn-wrapper">
+                <span id="elTombol" class="claim-label"></span>
+                <img src="./img/but_3x_7b8205b.png" alt="Claim Button" class="claim-btn-img">
+            </a>
+            <div class="social-proof">🔥 <span id="claimCount"></span> orang sudah klaim hari ini</div>
+        </div>
 
-      q("powered-by-text").textContent     = CONFIG.poweredBy;
-      q("brand-name").textContent          = CONFIG.brandName;
-      q("headline-line1").textContent      = CONFIG.headlineLine1;
-      q("headline-line2").textContent      = CONFIG.headlineLine2;
-      q("headline-accent").textContent     = CONFIG.headlineAccent;
-      q("event-badge").textContent         = CONFIG.eventBadge;
-      q("event-label").textContent         = CONFIG.eventLabel;
-      q("cta-label-text").textContent      = CONFIG.ctaLabel;
-      q("btn-text").textContent            = CONFIG.btnText;
-      q("footer-note").textContent         = CONFIG.footerNote;
+    </section>
 
-      // Link tombol claim
-      q("claim-btn").href = CONFIG.claimURL;
-
-      // Logo
-      const logoEl = q("logo-circle");
-      if (CONFIG.logoURL) {
-        logoEl.style.backgroundImage = `url(${CONFIG.logoURL})`;
-      } else {
-        logoEl.textContent = CONFIG.brandName.charAt(0);
-        logoEl.style.cssText += "display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.3rem;";
-      }
-
-      // Item images
-      const setImg = (imgId, fallbackId, url, label) => {
-        const img = document.getElementById(imgId);
-        const box = document.getElementById(fallbackId);
-        if (url) {
-          img.src = url; img.alt = label; img.style.display = "block";
-          box.style.display = "none";
-        } else {
-          img.style.display = "none";
-          box.style.display = "flex";
-          box.querySelector(".item-fallback-label").textContent = label;
-        }
-      };
-      setImg("img-item1", "fallback-item1", CONFIG.item1URL, CONFIG.item1Label);
-      setImg("img-item2", "fallback-item2", CONFIG.item2URL, CONFIG.item2Label);
-      setImg("img-item3", "fallback-item3", CONFIG.item3URL, CONFIG.item3Label);
-
-      // Chest image
-      const chestImg = q("chest-img");
-      const chestFb  = q("chest-fallback");
-      if (CONFIG.chestURL) {
-        chestImg.src = CONFIG.chestURL;
-        chestImg.style.display = "block";
-        chestFb.style.display  = "none";
-      } else {
-        chestImg.style.display = "none";
-        chestFb.style.display  = "flex";
-      }
-    });
-  </script>
-
-  <!-- HEADER -->
-  <div class="header">
-    <div class="logo-circle" id="logo-circle"></div>
-    <div class="powered-text">
-      <span id="powered-by-text">Powered by</span>
-      <span id="brand-name">Selangor Red Giants</span>
-    </div>
-  </div>
-
-  <!-- HEADLINE -->
-  <div class="headline-wrap">
-    <h1>
-      <span id="headline-line1">Klaim Skin &</span><br>
-      <span id="headline-line2">Recall</span><span class="accent" id="headline-accent">FREE</span>
-    </h1>
-  </div>
-
-  <!-- EVENT BADGE -->
-  <div class="event-badge" id="event-badge">Event Terbatas!</div>
-
-  <!-- MEGAPHONE ROW -->
-  <div class="event-label-row">
-    <span class="megaphone">📢</span>
-    <span id="event-label">Harmony Event M Series Championship</span>
-  </div>
-
-  <!-- ITEM SHOWCASE -->
-  <div class="items-row">
-
-    <!-- Item 1 -->
-    <div class="item-card sm">
-      <img id="img-item1" src="" alt="" />
-      <div id="fallback-item1" style="width:100%;height:100%;background:linear-gradient(135deg,#1e3a8a,#3b82f6);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;">
-        <span style="font-size:2rem;">💫</span>
-        <span class="item-fallback-label" style="font-size:0.55rem;color:#bfdbfe;text-align:center;line-height:1.2;margin-top:2px;font-family:'Rajdhani',sans-serif;"></span>
-      </div>
-    </div>
-
-    <!-- Item 2 (tengah, besar) -->
-    <div class="item-card lg">
-      <img id="img-item2" src="" alt="" />
-      <div id="fallback-item2" style="width:100%;height:100%;background:linear-gradient(135deg,#4c1d95,#7c3aed);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;">
-        <span style="font-size:2.5rem;">🧝</span>
-        <span class="item-fallback-label" style="font-size:0.55rem;color:#e9d5ff;text-align:center;line-height:1.2;margin-top:2px;font-family:'Rajdhani',sans-serif;"></span>
-      </div>
-    </div>
-
-    <!-- Item 3 -->
-    <div class="item-card sm">
-      <img id="img-item3" src="" alt="" />
-      <div id="fallback-item3" style="width:100%;height:100%;background:linear-gradient(135deg,#78350f,#d97706);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;">
-        <span style="font-size:2rem;">✨</span>
-        <span class="item-fallback-label" style="font-size:0.55rem;color:#fef3c7;text-align:center;line-height:1.2;margin-top:2px;font-family:'Rajdhani',sans-serif;"></span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CHEST -->
-  <div class="chest-wrap">
-    <img id="chest-img" src="" alt="Chest" style="width:240px;height:auto;filter:drop-shadow(0 12px 40px #b4530988);animation:floatChest 3s ease-in-out infinite;" />
-    <div id="chest-fallback" class="chest-placeholder">🎁</div>
-  </div>
-
-  <!-- BOTTOM PANEL -->
-  <div class="bottom-panel">
-
-    <div class="cta-label">
-      <div class="check-icon">✓</div>
-      <span id="cta-label-text">Klaim Gratis Disini :</span>
-    </div>
-
-    <a id="claim-btn" href="https://your-event-link.com" target="_blank" rel="noopener" class="btn-claim">
-      <span id="btn-text">Dapatkan Skin</span>
-      <span class="btn-arrow">→</span>
-    </a>
-
-    <p class="footer-note" id="footer-note">
-      Event berlaku selama stok masih ada. Syarat &amp; Ketentuan berlaku.
-    </p>
-
-  </div>
-
-</div>
+    <script src="script.js"></script>
 </body>
 </html>
