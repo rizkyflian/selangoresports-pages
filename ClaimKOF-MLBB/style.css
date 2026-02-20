@@ -210,8 +210,6 @@ html, body {
 .char-center {
     height: clamp(260px, 52vh, 540px);
     z-index: 3;
-    margin-top: 0 !important;
-    margin-bottom: 60px !important;
     box-shadow: 0 0 30px rgba(0,180,255,0.2), 4px 4px 18px rgba(0,0,0,0.6);
 }
 
@@ -375,9 +373,7 @@ html, body {
     }
 
     .char-center {
-        height: clamp(240px, 58vw, 340px);
-        margin-top: 0 !important;
-        margin-bottom: 35px !important;
+        height: clamp(240px, 58vw, 340px); /* sama dengan yang lain */
     }
 
     .claim-btn-img {
@@ -403,7 +399,5 @@ html, body {
     }
     .char-center {
         height: clamp(200px, 50vw, 280px);
-        margin-top: 0 !important;
-        margin-bottom: 28px !important;
     }
 }
