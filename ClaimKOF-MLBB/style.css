@@ -6,7 +6,8 @@
 
 html, body {
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     user-select: none;
 }
@@ -94,6 +95,7 @@ html, body {
 /* ── HERO ── */
 .hero {
     min-height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -101,7 +103,7 @@ html, body {
     background: url('./img/bg.jpg') center/cover no-repeat;
     color: white;
     position: relative;
-    padding: 66px 4% 24px;
+    padding: 66px 4% 40px;
     gap: 6px;
 }
 
@@ -202,11 +204,7 @@ html, body {
     transform: skewX(12deg) translateX(-50%) scale(1.07);
 }
 
-/* 2 kartu tengah — sama tinggi, hanya glow berbeda */
-.char-center {
-    z-index: 3;
-    box-shadow: 0 0 30px rgba(0,180,255,0.2), 4px 4px 18px rgba(0,0,0,0.6);
-}
+/* 2 kartu tengah — glow dan z-index diatur di .char-center bawah */
 
 /* 2 kartu tengah lebih tinggi */
 .char-center {
